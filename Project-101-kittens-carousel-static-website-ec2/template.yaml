@@ -7,7 +7,7 @@ Resources:
   WebServerSecuriyGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enable HTTP for Apache Web Server and SSH for secure connection   # Required
+      GroupDescription: Enable HTTP for Apache Web Server and SSH for secure connection 
       
     
       SecurityGroupIngress:
@@ -24,9 +24,9 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
                 
-      ImageId: ami-05fa00d4c63e32376      
+      ImageId: ami-018d291ca9ffc002f    
       InstanceType: t2.micro
-      KeyName: firstkey  #we always write keynames without pem extension in yml file
+      KeyName: meliskeypair  #we always write keynames without pem extension in yml file
       SecurityGroupIds:
         - !Ref WebServerSecuriyGroup 
       Tags:

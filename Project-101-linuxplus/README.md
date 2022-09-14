@@ -8,7 +8,28 @@ You will be working in different roles during this project and assigned to vario
 Companies have problems based on their infrastructures and needs. In this project, you will be working in different roles and you will be assigned some tasks which have backing up, security issues, user and password management, and some string manipulation duties. Sometimes, you need to prepair some bash script files or execute some commands, to be able to accomplish them. There are four tasks. Manager's instructions belonging them can be found below. Please read them carefully and fulfill requirements. Good Luck!
 
 ## Part 1: Security Issue
-You are working in a Financial Company as DevSecOps. Recently, one of your instances has been terminated by someone within the firm. That instance was very important for firm's web-app and also your infrastructure has been affected by this termination. Your team lead is suspecting `Serdar` user. You have assigned to find instances' ids terminated by `Serdar` user. You have Cloudtrail event history file named `event_history.csv`. Instance ids within this event history look like `i-0c127ab5cdf997cf4`. You have to apply some filtering and string manipulation commands to find ids. To be able to handle this tasks, you decided to create a bash script, then, save instances' ids terminated by `Serdar` user in `result.txt` file.  
+You are working in a Financial Company as DevSecOps. Recently, one of your instances has been terminated by someone within the firm. That instance was very important for firm's web-app and also your infrastructure has been affected by this termination. Your team lead is suspecting `Serdar` user. You have assigned to find instances' ids terminated by `Serdar` user. You have Cloudtrail event history file named `event_history.csv`. Instance ids within this event history look like `i-0c127ab5cdf997cf4`. You have to apply some filtering and string manipulation commands to find ids. To be able to handle this tasks, you decided to create a bash script, then, save instances' ids terminated by `Serdar` user in `result.txt` file.   
+
+#cat event_history.csv | grep Serdar
+#cat event_history.csv | grep -i Serdar | grep Terminate
+#cat event_history.csv | grep -i Serdar | grep TerminateInstances | grep -Eo "i-[a-zA-Z0-9]{17}"
+cat event_history.csv | grep -i Serdar | grep TerminateInstances | grep -Eo "i-[a-zA-Z0-9]{17}" | sort | uniq > result.txt
+#nano script.sh
+
+
+#!/bin/bash
+if [[ $# -ne 1 ]]
+then
+       echo "Usage is $0 name_of_file"
+       exit 1
+fi
+
+filename=$1
+
+cat $filename | grep -i Serdar | grep TerminateInstance | grep -Eo "i-[a-zA-Z0-9{17}" | sort | uniq >$
+
+
+
 
 ## Part 2: User and Password Script
 You're working as a System Administrator for a e-commerce company. The latest company initiative requires you to write an ansible file for dozens of servers. You're falling behind schedule and are going to miss your deadline for these ansible files because you are constantly being interrupted by the HR calling you to create new Linux accounts for all the people in the company who have been recruited to test out the company's newest Linux-based application.

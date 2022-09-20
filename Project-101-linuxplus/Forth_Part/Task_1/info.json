@@ -17,7 +17,7 @@
                 "Tenancy": "default"
             },
             "PrivateDnsName": "ip-172-31-82-220.ec2.internal",
-            "PrivateIpAddress": "172.31.82.220",
+            "PrivateIpAddress": "172.31.82.220",  
             "ProductCodes": [],
             "PublicDnsName": "",
             "State": {
@@ -107,3 +107,12 @@
     "OwnerId": "046402772087",
     "ReservationId": "r-06204eb5486010c07"
 }
+
+
+
+
+
+#ForthParth/task1/ 
+ls -la
+cat info.json | grep "PrivateIpAddress"
+sed -i "s/ec2-private_ip/$(cat info.json | grep "PrivateIpAddress" | head -1 | cut -d'"' -f4)/g" terraform.tf
